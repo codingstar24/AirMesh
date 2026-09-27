@@ -12,7 +12,7 @@ If you discover a security vulnerability or sandbox escape in AirMesh:
 1. Please **do not** open a public GitHub issue.
 2. Report the vulnerability directly to the creator:
    - **Lead Architect**: Zohair Sathaliya
-   - **Email**: [security@airmesh.network](mailto:security@airmesh.network) or open a private security advisory on GitHub.
+   - **Email**: [zohairprivate@gmail.com](mailto:zohairprivate@gmail.com) or open a private security advisory on GitHub.
 
 We take security and zero-trust confinement very seriously and will investigate and patch verified vulnerabilities promptly.
 
