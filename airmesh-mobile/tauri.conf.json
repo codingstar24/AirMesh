@@ -1,0 +1,23 @@
+{
+  "build": {
+    "beforeDevCommand": "npm --prefix ../airmesh-web run dev",
+    "beforeBuildCommand": "npm --prefix ../airmesh-web run build",
+    "devUrl": "http://localhost:5173",
+    "frontendDist": "../airmesh-web/build"
+  },
+  "package": {
+    "productName": "AirMesh",
+    "version": "0.1.0"
+  },
+  "bundle": {
+    "active": true,
+    "identifier": "network.airmesh.app",
+    "icon": ["icons/icon.png"],
+    "android": {
+      "minSdkVersion": 24
+    },
+    "iOS": {
+      "developmentTeam": ""
+    }
+  }
+}

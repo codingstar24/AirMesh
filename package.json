@@ -1,0 +1,40 @@
+{
+  "name": "airmesh",
+  "version": "1.0.0",
+  "description": "100% Local, Offline-First, Zero-Cloud Peer-to-Peer File & Media Mesh with Resumable Chunked Transfer and Progressive Live Streaming.",
+  "main": "dev_server.cjs",
+  "scripts": {
+    "start": "node dev_server.cjs",
+    "sync": "node sync_assets.cjs",
+    "test": "node scripts/verify_robustness.cjs",
+    "samples": "node scripts/create_samples.cjs"
+  },
+  "keywords": [
+    "p2p",
+    "mesh",
+    "offline-first",
+    "file-sharing",
+    "resumable-upload",
+    "progressive-streaming",
+    "wifi-lan",
+    "zero-cloud",
+    "zero-telemetry",
+    "local-network"
+  ],
+  "author": "Zohair Sathaliya",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airmesh/airmesh.git"
+  },
+  "bugs": {
+    "url": "https://github.com/airmesh/airmesh/issues"
+  },
+  "homepage": "https://github.com/airmesh/airmesh#readme",
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

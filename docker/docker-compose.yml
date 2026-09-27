@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  airmesh:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: airmesh-node
+    restart: unless-stopped
+    network_mode: "host" # Host network required for mDNS & UDP broadcast discovery
+    volumes:
+      - ./shared:/shared
+      - ./downloads:/downloads
+      - ./data:/data
+    environment:
+      - RUST_LOG=info

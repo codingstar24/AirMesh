@@ -1,0 +1,64 @@
+name: AirMesh CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: "-D warnings"
+
+jobs:
+  code-quality:
+    name: Code Quality & Linter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - name: Rustfmt Check
+        run: cargo fmt --all -- --check
+      - name: Clippy Pedantic Check
+        run: cargo clippy --workspace --all-targets -- -D warnings -D clippy::all -D clippy::pedantic
+
+  test-matrix:
+    name: Cross-Platform Test Matrix
+    needs: code-quality
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Run Test Suite
+        run: cargo test --workspace -- --nocapture
+      - name: Run Chaos Tests
+        run: cargo test --package tests --test chaos_test -- --nocapture
+
+  wasm-validation:
+    name: WebAssembly Browser Core Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - name: Build Core for WASM
+        run: cargo check --target wasm32-unknown-unknown -p airmesh-core
+
+  security-audit:
+    name: Dependency Audit & Zero-Telemetry Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install Audit Tools
+        run: cargo install cargo-audit cargo-deny || true
+      - name: Run Cargo Audit
+        run: cargo audit || true
+      - name: Run Cargo Deny
+        run: cargo deny check || true

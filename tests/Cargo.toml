@@ -1,0 +1,30 @@
+[package]
+name = "airmesh-tests"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+airmesh-core = { path = "../airmesh-core" }
+airmesh-daemon = { path = "../airmesh-daemon" }
+tokio = { workspace = true }
+tempfile = { workspace = true }
+proptest = { workspace = true }
+anyhow = { workspace = true }
+
+[lib]
+path = "src/lib.rs"
+
+[[test]]
+name = "discovery_test"
+path = "integration/discovery_test.rs"
+
+[[test]]
+name = "transfer_test"
+path = "integration/transfer_test.rs"
+
+[[test]]
+name = "chaos_test"
+path = "chaos/chaos_test.rs"

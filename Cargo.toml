@@ -1,0 +1,78 @@
+[workspace]
+resolver = "2"
+members = [
+    "airmesh-core",
+    "airmesh-daemon",
+    "airmesh-cli",
+    "tests",
+    "benches",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+authors = ["Zohair Sathaliya <zohair@airmesh.network>", "AirMesh Core Contributors"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/airmesh/airmesh"
+homepage = "https://airmesh.network"
+readme = "README.md"
+keywords = ["p2p", "mesh", "file-sharing", "quic", "offline-first"]
+categories = ["network-programming", "filesystem", "command-line-utilities"]
+
+[workspace.dependencies]
+# Async Runtime & Networking
+tokio = { version = "1.38", features = ["full"] }
+tokio-util = { version = "0.7", features = ["codec", "io"] }
+quinn = "0.11"
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+rcgen = "0.13"
+socket2 = { version = "0.5", features = ["all"] }
+futures = "0.3"
+async-trait = "0.1"
+
+# Web Framework & HTTP API
+axum = { version = "0.7", features = ["ws", "macros", "multipart"] }
+tower = { version = "0.4", features = ["util", "timeout", "limit"] }
+tower-http = { version = "0.5", features = ["cors", "trace", "fs", "compression-full"] }
+
+# Cryptography & Integrity
+ed25519-dalek = { version = "2.1", features = ["rand_core", "serde", "zeroize"] }
+blake3 = { version = "1.5", features = ["rayon", "mmap", "zeroize"] }
+ring = "0.17"
+zeroize = { version = "1.8", features = ["zeroize_derive"] }
+rand = "0.8"
+
+# Storage, Compression & Parsing
+rusqlite = { version = "0.31", features = ["bundled", "bundled-full"] }
+fastcdc = "1.0"
+lz4_flex = { version = "0.11", default-features = false, features = ["std", "safe-decode"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+bytes = { version = "1.6", features = ["serde"] }
+notify = "6.1"
+
+# Error Handling & Utilities
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+clap = { version = "4.5", features = ["derive", "env", "cargo"] }
+uuid = { version = "1.8", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+tempfile = "3.10"
+
+# Benchmarking & Testing
+proptest = "1.4"
+criterion = { version = "0.5", features = ["async_tokio"] }
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.bench]
+opt-level = 3
+debug = true

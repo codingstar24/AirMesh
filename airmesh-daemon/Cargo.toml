@@ -1,0 +1,30 @@
+[package]
+name = "airmesh-daemon"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+readme = "README.md"
+description = "AirMesh background daemon providing local mesh networking, HTTP REST, WebSocket and PWA services"
+
+[dependencies]
+airmesh-core = { path = "../airmesh-core" }
+
+tokio = { workspace = true }
+axum = { workspace = true }
+tower = { workspace = true }
+tower-http = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+clap = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+rusqlite = { workspace = true }
+bytes = { workspace = true }
+futures = { workspace = true }
+mime_guess = "2.0"

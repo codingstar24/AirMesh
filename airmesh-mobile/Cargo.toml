@@ -1,0 +1,15 @@
+[package]
+name = "airmesh-mobile"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+readme = "README.md"
+description = "Tauri Mobile frontend wrapper for AirMesh on Android and iOS"
+
+[dependencies]
+airmesh-core = { path = "../airmesh-core" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }

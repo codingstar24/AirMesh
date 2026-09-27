@@ -1,0 +1,25 @@
+[package]
+name = "airmesh-benches"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+airmesh-core = { path = "../airmesh-core" }
+criterion = { workspace = true }
+tokio = { workspace = true }
+
+[lib]
+path = "src/lib.rs"
+
+[[bench]]
+name = "throughput"
+path = "throughput.rs"
+harness = false
+
+[[bench]]
+name = "search"
+path = "search.rs"
+harness = false
